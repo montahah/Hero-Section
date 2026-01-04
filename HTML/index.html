@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        body{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        .hero-section{
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center rgba(100, 120,100, 0.3) 0%, rgba(0,0,0,1) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Navigation */
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            position: relative;
+            z-index: 100;
+
+        }
+        .logo{
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-center{
+            display: flex;
+            /* align-items: center; */
+
+            gap: 35px;
+            background: #353535;
+            padding: 12px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+
+        }
+        .nav-center a{
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .nav-center a:hover{
+            color: #fff;
+
+        }
+        .nav-right{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .protection-btn{
+            background: #000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+
+        }
+        .shield-icon{
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            color: #000;
+            justify-content: center;
+            font-weight: bolder;
+
+        }
+        .create-account{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        /* Hero Content */
+        .hero-content{
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 60px;
+            text-align: center;
+
+        }
+        /* Animated Background Elements */
+        .crypto-nodes{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .node{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+
+        }
+        .node-icon {
+            width: 40px;
+            height: 40px;
+            
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .node-label1{
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+
+        }
+        .node-value{
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .node-1{top:30%; left: 12%;animation: float 6s ease-in-out infinite; }
+        .node-2{top:20%; right: 12%;animation: float 7s ease-in-out infinite; }
+        .node-3{bottom:30%; left: 10%;animation: float 8s ease-in-out infinite; }
+        .node-4{bottom:35%; right: 8%;animation: float 6s ease-in-out infinite; }
+        @keyframes float{
+            0%, 100% {transform: translateY(0px);}
+            50% {transform: translateY(-20px);}
+        }
+        /* Connection Lines */
+        .connection-lines{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .line{
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            height: 20px;
+            color: #fff;
+            /* background: #4e4e4e; */
+        }
+        .line-1{
+            width: 300px;
+            top: 32%;
+            left: 15%;
+            transform: rotate(-15deg);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        .line-2{
+            width: 300px;
+            top: 32%;
+            right: 15%;
+            transform: rotate(15deg);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse{
+            0%, 100%{opacity: 0.3;}
+            50% {opacity: 0.6;}
+        }
+        .video-badge{
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(85, 85, 85, 0.5);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            
+
+        }
+        .play-icon{
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .video-badge span{
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        h1{
+            font-size: 90px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+        .defense-text{
+            background: linear-gradient(135deg, rgba(255, 255,255, 0.15), rgba(255, 255, 255, 0.05));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+
+        }
+        .tagline{
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+        /* CTA Button */
+        .cta-buttons{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 100px;
+        }
+        .btn-primary{
+            background: white;
+            color: #000;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+
+        }
+        .btn-primary:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25);
+        }
+        .btn-secondary{
+            background: rgba(40, 40, 40, 0.8);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        .btn-secondary:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(69, 69, 69, 0.9);
+        }
+        /* Scroll Indicator */
+        .scroll-indicator{
+            position: absolute;
+            bottom: 50px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+        .scroll-icon{
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 2s ease-in-out infinite;
+
+        }
+        @keyframes bounce{
+            0%, 100%{transform: translateY(0);}
+            50%{transform: translateY(8px);}
+        }
+        .hero-horizons{
+            position: absolute;
+            bottom: 50px;
+            right: 60px;
+            text-align: right;
+        }
+        .hero-horizons-text{
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
+        }
+        .progress-bar{
+            width: 80px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-left: auto;
+
+        }
+        .progress-fill{
+            width: 30%;
+            height: 100%;
+            background: white;
+            animation: progress 3s ease-in-out infinite;
+        }
+        
+        @keyframes progress {
+            0%, 100% { width: 30%;}
+            50%{width: 60%;}
+        }
+        .partners{
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            align-items: center;
+            padding: 40px 0;
+            opacity: 0.4;
+        }
+        .partner-logo{
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+
+        }
+        @media(max-width: 1024px){
+            h1 {font-size: 60px;}
+            nav{padding: 20px 30px;}
+            .hero-content{padding: 80px 30px;}
+            .nav-center{gap: 20px;}
+        }
+        @media (max-width: 768px){
+            h1{font-size: 40px;}
+            .tagline{font-size: 40px;}
+            .cta-buttons{flex-direction: column; align-items: center;}
+            .partners{flex-wrap: wrap; gap: 30px;}
+            .node{display: none;}
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <nav>
+            <div class="logo"></div>
+            <div class="nav-center">
+                <a href="#">Home</a>
+                <a href="#">App</a>
+                <a href="#">Assets</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="nav-right">
+                <a href="#" class="protection-btn">Protect</a>
+                <div class="shield-icon">🛡</div>
+                <a href="#" class="create-account">Account</a>
+            </div>
+        </nav>
+
+        <!-- Crypto Nodes with Animation -->
+         <div class="crypto-nodes">
+            <div class="node node-1">
+                <div class="node-icon">△</div>
+                <div class="node-label">Cortex</div>
+                <div class="node-value">70,945</div>
+            </div>
+            <div class="node node-2">
+                <div class="node-icon">⚡</div>
+                <div class="node-label">Quant</div>
+                <div class="node-value">2,945</div>
+            </div>
+            <div class="node node-3">
+                <div class="node-icon">⚙</div>
+                <div class="node-label">Aelf</div>
+                <div class="node-value">19,346</div>
+            </div>
+            <div class="node node-4">
+                <div class="node-icon">🔥</div>
+                <div class="node-label">Meeton</div>
+                <div class="node-value">440</div>
+            </div>
+         </div>
+         <!-- Connection Lines -->
+          <div class="connection-lines">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+          </div>
+          <!-- Hero Content -->
+           <div class="hero-content">
+                <div class="video-badge">
+                    <div class="play-icon">▶</div>
+                    <span>🔓 Unlock Your Assets Spark!</span>
+                </div>
+                <h1>One-click for Asset
+                <span class="defense-text">Defense</span>
+                </h1>
+                <p class="tagline">Dive into the art assets, where innovative blockchain technology meets financial expertise</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary">Open App </a>
+                    <a href="#" class="btn-secondary">Discover More</a>
+                </div>
+                <!-- Partner Logos -->
+                 <div class="partners">
+                    <div class="partner-logo">▲ Vercel</div>
+                    <div class="partner-logo">✷ loom</div>
+                    <div class="partner-logo">$ Cash</div>
+                    <div class="partner-logo">◉ Loops</div>
+                    <div class="partner-logo">⚡zapier</div>
+                    <div class="partner-logo">ramp ↗</div>
+                    <div class="partner-logo">🎙 Raycast</div>
+                 </div>
+           </div>
+           <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-icon">↓</div>
+                <span>02/03 . Scroll down</span>
+            </div>
+            <!-- Hero Horizons -->
+             <div class="hero-horizons">
+                <div class="hero-horizons-text">hero horizons</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+             </div>
+    </section>
+</body>
+</html>
